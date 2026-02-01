@@ -1,0 +1,1 @@
+#starting documentation for clipping algorithm
