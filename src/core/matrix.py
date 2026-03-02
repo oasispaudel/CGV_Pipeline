@@ -2,7 +2,6 @@
 src/core/matrix.py
 ==================
 All transformation matrices for the CGV Pipeline.
-Person 1 – Pipeline Core + Coordinate Transformations
 
 All transforms use 4×4 homogeneous matrices so that 2D and 3D objects
 share the same pipeline. 2D objects simply live in the z = 0 plane.

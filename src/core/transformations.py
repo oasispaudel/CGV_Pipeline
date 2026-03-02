@@ -2,7 +2,6 @@
 src/core/transformations.py
 ============================
 Camera (view transformation) and pipeline stage runner functions.
-Person 1 – Pipeline Core + Coordinate Transformations
 
 Classes:
     Camera          – Simulates a virtual camera using the look-at model
@@ -97,10 +96,6 @@ class Camera:
                 f"  up ={self.up.tolist()}\n)")
 
 
-# ──────────────────────────────────────────────────────────────────────────────
-# PIPELINE STAGE FUNCTIONS
-# These are Person 1's public API — called by main.py to run the pipeline.
-# ──────────────────────────────────────────────────────────────────────────────
 
 def apply_model_to_world(state: PipelineState,
                          model_matrix: np.ndarray) -> PipelineState:
