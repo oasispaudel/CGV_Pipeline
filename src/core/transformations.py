@@ -158,3 +158,12 @@ def apply_world_to_view(state: PipelineState,
     transformed = state.latest().copy_with_matrix(V, name="view_space")
     state.add_stage("2_world_to_view", transformed)
     return state
+
+def apply_model_stage(state: PipelineState, model_matrix) -> PipelineState:
+    """Alias for apply_model_to_world (used by main.py)."""
+    return apply_model_to_world(state, model_matrix)
+
+
+def apply_view_stage(state: PipelineState, camera: Camera) -> PipelineState:
+    """Alias for apply_world_to_view (used by main.py)."""
+    return apply_world_to_view(state, camera)

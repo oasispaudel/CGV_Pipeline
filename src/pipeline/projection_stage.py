@@ -197,3 +197,4 @@ def apply_orthographic_projection(
 
     state.add_stage(STAGE_KEY, ndc_mesh)
     return state
+

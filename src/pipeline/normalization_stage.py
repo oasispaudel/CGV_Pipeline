@@ -219,3 +219,21 @@ def apply_normalisation(
 
     state.add_stage(STAGE_KEY, ndc_mesh)
     return state
+
+def apply_normalisation(state, near=0.1, far=100.0,
+                        flip_y=False, clip_to_ndc=True):
+    import numpy as np
+    from ..core.data_structures import Mesh, Vertex, Edge
+    mesh = state.latest()
+    new_verts = []
+    for v in mesh.vertices:
+        w = v.w if abs(v.w) > 1e-10 else 1e-10
+        x_n = np.clip(v.x / w, -1.0, 1.0) if clip_to_ndc else v.x / w
+        y_n = np.clip(v.y / w, -1.0, 1.0) if clip_to_ndc else v.y / w
+        y_n = -y_n if flip_y else y_n
+        z_n = np.clip(v.z / w, -1.0, 1.0) if clip_to_ndc else v.z / w
+        new_verts.append(Vertex(coords=np.array([x_n, y_n, z_n, 1.0])))
+    ndc_mesh = Mesh(name="ndc_normalised", vertices=new_verts,
+                    edges=[Edge(e.start, e.end) for e in mesh.edges])
+    state.add_stage("3b_normalisation", ndc_mesh)
+    return state
